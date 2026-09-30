@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+<h2>
+    Chamado #{{ chamado.id }}
+</h2>
+
+<div class="detalhes">
+
+    <p>
+        <strong>Solicitante:</strong>
+        {{ chamado.solicitante }}
+    </p>
+
+    <p>
+        <strong>Título:</strong>
+        {{ chamado.titulo }}
+    </p>
+
+    <p>
+        <strong>Descrição:</strong>
+        {{ chamado.descricao }}
+    </p>
+
+    <p>
+        <strong>Prioridade:</strong>
+        {{ chamado.prioridade }}
+    </p>
+
+    <p>
+        <strong>Status:</strong>
+        {{ chamado.status }}
+    </p>
+
+    <p>
+        <strong>Criado em:</strong>
+        {{ chamado.criado_em }}
+    </p>
+
+</div>
+
+<h3>Alterar status</h3>
+
+<form
+    method="POST"
+    action="/chamados/{{ chamado.id }}/status"
+>
+
+    <select name="status">
+
+        <option value="ABERTO">
+            Aberto
+        </option>
+
+        <option value="EM ATENDIMENTO">
+            Em atendimento
+        </option>
+
+        <option value="FECHADO">
+            Fechado
+        </option>
+
+    </select>
+
+    <button type="submit">
+        Atualizar
+    </button>
+
+</form>
+
+<hr>
+
+<form
+    method="POST"
+    action="/chamados/{{ chamado.id }}/excluir"
+>
+
+    <button
+        class="danger"
+        type="submit"
+    >
+        Excluir chamado
+    </button>
+
+</form>
+
+{% endblock %}
